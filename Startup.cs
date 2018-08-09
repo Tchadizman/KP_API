@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace KP_API
 {
@@ -15,6 +16,7 @@ namespace KP_API
     {
         public Startup(IConfiguration configuration)
         {
+            
             Configuration = configuration;
         }
 
@@ -22,13 +24,25 @@ namespace KP_API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
             services.AddMvc();
+
+            services.AddSwaggerGen(c => 
+            { 
+                c.SwaggerDoc("v1", new Info { Title = "KP_Swagger", Version = "v1" }); 
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => 
+            { 
+               c.SwaggerEndpoint("/swagger/v1/swagger.json", "KP_Swagger v1"); 
+            }); //found at http://localhost:5000/swagger/index.html
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
