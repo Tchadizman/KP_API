@@ -1,7 +1,11 @@
 using System;
 
-namespace KP_API.Core.Player
+namespace KP_API.Core
 {
-    public Guid Id {get;set;}
-    public string Name {get;set;}
+    public class Player
+    {
+        public Guid Id {get;set;}
+        public string Name {get;set;}
+    }
+    
 }
