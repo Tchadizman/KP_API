@@ -12,7 +12,7 @@ namespace KP_API.Controllers
         [HttpGet]
         public Mission GetRandomMission()
         {
-           
+           throw new NotImplementedException();
            
         }
     }
