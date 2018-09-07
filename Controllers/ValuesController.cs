@@ -20,7 +20,7 @@ namespace KP_API.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return $"value equal {id}";
         }
 
         // POST api/values
